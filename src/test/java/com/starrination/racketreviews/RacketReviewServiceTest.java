@@ -1,6 +1,7 @@
 package com.starrination.racketreviews;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,6 @@ class RacketReviewServiceTest {
         racketReviews.add(r1);
         racketReviews.add(r2);
         Float avg = racketReviewService.calculateAvgRating(racketReviews);
-        System.out.println(avg);
+        assertEquals(7.5F, avg);
     }
 }
