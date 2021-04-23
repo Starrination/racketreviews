@@ -10,28 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.ArrayList;
 
 @RestController
 public class RacketReviewsController {
+
+    @Autowired
+    private RacketReviewService racketReviewService;
 
     @Autowired
     private RacketReviewRepository racketRepository;
 
     @GetMapping(path="/racketreviews")
     @CrossOrigin()
-    public List<RacketReview> getRacketReviews() {
-        List<RacketReview> racketReviews = new ArrayList<>();
-        for(RacketReview racketReview : racketRepository.findAll()) {
-            racketReviews.add(racketReview);
-        }
-        return racketReviews;
+    public List<RacketReview> getAllRacketReviews() {
+        return racketReviewService.getAllRacketReviews();
     }
 
     @GetMapping(path="/racketreviews/{id}")
     @CrossOrigin()
     public RacketReview getRacketReview(@PathVariable Integer id) {
-        return racketRepository.findById(id).orElseThrow(() -> new RacketReviewNotFoundException(id));
+        return racketReviewService.getRacketReview(id);
     }
 
     @PostMapping(path="/racketreviews")
@@ -45,9 +43,9 @@ public class RacketReviewsController {
     public RacketReview updateRacketReview(@RequestBody RacketReview newRacketReview, @PathVariable Integer id) {
         return racketRepository.findById(id)
         .map(racketReview -> {
-            racketReview.setName(newRacketReview.getName());
-            racketReview.setAge(newRacketReview.getAge());
-            racketReview.setJersey(newRacketReview.getJersey());
+            racketReview.setReviewerName(newRacketReview.getReviewerName());
+            racketReview.setRating(newRacketReview.getRating());
+            racketReview.setReviewText(newRacketReview.getReviewText());
             return racketRepository.save(racketReview);
          })
          .orElseThrow(() -> new RacketReviewNotFoundException(id));

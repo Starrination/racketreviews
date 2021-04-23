@@ -12,18 +12,22 @@ public class RacketReview {
     @GeneratedValue (strategy=GenerationType.AUTO)
     private Integer id;
 
-    private String name;
-    private String jersey; 
-    private int age;
+    private String reviewerName;
+    private String racketName;
+    private Integer rating;
+    private String reviewText;
+    private Integer racketId;
+    private Float racketAvgRating;
     
     public RacketReview() {
        
     }
-
-    public RacketReview(String name, String jersey, int age) {
-        this.name = name;   
-        this.jersey = jersey;
-        this.age = age; 
+    public RacketReview(String reviewerName, Integer racketId, String racketName, Integer rating, String reviewText) {
+        this.reviewerName = reviewerName;
+        this.racketId = racketId;
+        this.racketName = racketName;
+        this.rating = rating;
+        this.reviewText = reviewText;
     }
 
     public Integer getId() {
@@ -34,27 +38,51 @@ public class RacketReview {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getReviewerName() {
+        return reviewerName;
     }
 
-    public void setName (String name) {
-        this.name = name;
+    public void setReviewerName(String name) {
+        this.reviewerName = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getRacketName() {
+        return racketName;
     }
 
-    public void setAge (int age) {
-        this.age = age;
+    public void setRacketName(String racketName) {
+        this.racketName = racketName;
     }
 
-    public String getJersey() {
-        return jersey;
+    public Integer getRacketId() {
+        return racketId;
     }
 
-    public void setJersey (String jersey) {
-        this.jersey = jersey;
+    public void setRacketId(Integer racketId) {
+        this.racketId = racketId;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public String getReviewText() {
+        return reviewText;
+    }
+
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+
+    public Float getRacketAvgRating() {
+        return racketAvgRating;
+    }
+
+    public void setRacketAvgRating(Float racketAvgRating) {
+        this.racketAvgRating = racketAvgRating;
     }
 }
