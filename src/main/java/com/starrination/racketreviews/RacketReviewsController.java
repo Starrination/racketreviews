@@ -1,6 +1,8 @@
 package com.starrination.racketreviews;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +36,9 @@ public class RacketReviewsController {
 
     @PostMapping(path="/racketreviews")
     @CrossOrigin()
-    public RacketReview addRacketReview(@RequestBody RacketReview racketReview) {
-        return racketRepository.save(racketReview);
+    public  ResponseEntity<RacketReview> addRacketReview(@RequestBody RacketReview racketReview) {
+        racketRepository.save(racketReview);
+        return new ResponseEntity<>(racketReview, HttpStatus.CREATED);
     }
 
     @PostMapping (path="/racketreviews/{id}")
